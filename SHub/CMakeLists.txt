@@ -9,6 +9,12 @@ target_include_directories(SHub PUBLIC "${PROJECT_SOURCE_DIR}/include")
 
 target_link_libraries(SHub "glfw3")
 
+if(MSVC)
+    if(CMAKE_BUILD_TYPE STREQUAL "Release")
+        set_target_properties(SHub PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
+    endif()
+endif()
+
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET SHub PROPERTY CXX_STANDARD 20)
 endif()

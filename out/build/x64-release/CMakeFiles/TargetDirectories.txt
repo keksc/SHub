@@ -1,0 +1,5 @@
+C:/Users/pbour/source/repos/SHub/out/build/x64-release/CMakeFiles/edit_cache.dir
+C:/Users/pbour/source/repos/SHub/out/build/x64-release/CMakeFiles/rebuild_cache.dir
+C:/Users/pbour/source/repos/SHub/out/build/x64-release/SHub/CMakeFiles/SHub.dir
+C:/Users/pbour/source/repos/SHub/out/build/x64-release/SHub/CMakeFiles/edit_cache.dir
+C:/Users/pbour/source/repos/SHub/out/build/x64-release/SHub/CMakeFiles/rebuild_cache.dir

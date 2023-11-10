@@ -3,8 +3,8 @@
 #include <glad/gl.h>
 
 struct Rect {
-	float a, b, c, d;
+	float x1, y1, x2, y2;
 	void draw() {
-		glRectf(a, b, c, d);
+		glRectf(x1, y1, x2, y2);
 	}
 };

@@ -1,12 +1,19 @@
 ﻿#include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include <rect.hpp>
-
-constexpr int width = 640;
-constexpr int height = 360;
+#include <utils/rect.hpp>
+#include <memory>
+#include "winsettings.hpp"
+#include "scenes/scene.hpp"
+#include "scenes/mainMenu.hpp"
 
 void draw(GLFWwindow *window);
+void sizeCallback(GLFWwindow* window, int width, int height);
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+void mouseCallback(GLFWwindow* window, int button, int action, int mods);
+void mousePosCallback(GLFWwindow* window, double xpos, double ypos);
+
+std::unique_ptr<Scene> scene;
 
 int main()
 {
@@ -21,10 +28,10 @@ int main()
 
 	glfwSetWindowSizeLimits(window, width, height, GLFW_DONT_CARE, GLFW_DONT_CARE);
 
-	//glfwSetKeyCallback(window, key_callback);
-	//glfwSetMouseButtonCallback(window, mouse_callback);
-	//glfwSetCursorPosCallback(window, cursor_pos_callback);
-	//glfwSetWindowSizeCallback(window, window_size_callback);
+	glfwSetKeyCallback(window, keyCallback);
+	glfwSetMouseButtonCallback(window, mouseCallback);
+	glfwSetCursorPosCallback(window, mousePosCallback);
+	glfwSetWindowSizeCallback(window, sizeCallback);
 
 	glfwMakeContextCurrent(window);
 	gladLoadGL(glfwGetProcAddress);
@@ -32,7 +39,9 @@ int main()
 
 	gladLoadGL(glfwGetProcAddress);
 
-	std::cout << "Hello World !!!!!!!!!!!!!!!!!!" << std::endl;
+	glViewport(0, 0, width, height);
+
+	scene = std::make_unique<MainMenu>();
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -46,10 +55,28 @@ int main()
 }
 
 void draw(GLFWwindow *window) {
-	glClearColor(0.1f, 0.1f, 0.1f, 0.1f);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3ub(250, 0, 0);
-	Rect rect = {-0.5, -0.5, 0.5, 0.5};
-	rect.draw();
+	scene->draw(window);
 	glfwSwapBuffers(window);
+}
+
+void sizeCallback(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+	draw(window);
+}
+
+void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+void mouseCallback(GLFWwindow* window, int button, int action, int mods)
+{
+	scene->mouse(window, button, action, mods);
+}
+
+static void mousePosCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	scene->mousePos(window, xpos, ypos);
 }
