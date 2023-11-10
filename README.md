@@ -1,0 +1,2 @@
+# SHub
+school thingy
