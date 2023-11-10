@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+/.vs
+/out/Debian/build/linux-debug
+/out/build/x64-debug/Testing/Temporary
+/out/build/x64-debug/SHub/CMakeFiles/SHub.dir
+/out/build/x64-debug/CMakeFiles
+/out/build/x64-debug
