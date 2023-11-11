@@ -1,2 +1,2 @@
-# SHub
+# VSHub
 school thingy
