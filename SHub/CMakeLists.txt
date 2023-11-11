@@ -7,7 +7,7 @@ add_executable (SHub "SHub.cpp" "../glad/gl.c" )
 target_link_directories(SHub PUBLIC "${PROJECT_SOURCE_DIR}/lib")
 target_include_directories(SHub PUBLIC "${PROJECT_SOURCE_DIR}/include")
 
-target_link_libraries(SHub "glfw3")
+target_link_libraries(SHub "glfw3" "freetype")
 
 if(MSVC)
     if(CMAKE_BUILD_TYPE STREQUAL "Release")

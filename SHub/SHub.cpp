@@ -3,6 +3,7 @@
 #include <iostream>
 #include <utils/rect.hpp>
 #include <memory>
+#include <utils/font.hpp>
 #include "winsettings.hpp"
 #include "scenes/scene.hpp"
 #include "scenes/mainMenu.hpp"
@@ -41,6 +42,8 @@ int main()
 
 	glViewport(0, 0, width, height);
 
+	font::init();
+	font::test();
 	scene = std::make_unique<MainMenu>();
 
 	while (!glfwWindowShouldClose(window))
@@ -49,6 +52,7 @@ int main()
 		glfwPollEvents();
 	}
 
+	font::done();
 	glfwTerminate();
 
 	return 0;
@@ -76,7 +80,7 @@ void mouseCallback(GLFWwindow* window, int button, int action, int mods)
 	scene->mouse(window, button, action, mods);
 }
 
-static void mousePosCallback(GLFWwindow* window, double xpos, double ypos)
+void mousePosCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	scene->mousePos(window, xpos, ypos);
 }
