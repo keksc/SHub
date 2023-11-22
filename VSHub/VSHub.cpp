@@ -21,7 +21,7 @@ int main()
 	if (!glfwInit())
 		return -1;
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "SHub", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(width, height, "VSHub", NULL, NULL);
 	if (!window) {
 		glfwTerminate();
 		return -1;
